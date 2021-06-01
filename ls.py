@@ -3,6 +3,7 @@ import clint
 import sys
 import pathlib
 
+
 class CommandError(object):
     def __init__(self, error_message, is_fatal=True):
         self.message = error_message
@@ -14,6 +15,7 @@ class CommandError(object):
         print(clint.textui.colored.red(f"ERROR: {self.message}"))
         if self.is_fatal:
             sys.exit()
+
 
 class ListDirectories(object):
     def __init__(self, directory):
@@ -28,9 +30,17 @@ class ListDirectories(object):
         for filename in files:
             filepath = os.path.join(directory, filename)
             file_size = pathlib.Path(filepath).stat().st_size
-            
-            color = clint.textui.colored.blue if os.path.isdir(filepath) else clint.textui.colored.yellow
-            print(f"{color(filename)} -> ", clint.textui.colored.cyan(f"[size:{file_size} bytes]"))
+
+            color = (
+                clint.textui.colored.blue
+                if os.path.isdir(filepath)
+                else clint.textui.colored.yellow
+            )
+            print(
+                f"{color(filename)} -> ",
+                clint.textui.colored.cyan(f"[size:{file_size} bytes]"),
+            )
+
 
 directory = None
 arguments = sys.argv[1:]
