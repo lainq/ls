@@ -4,12 +4,19 @@ import { join } from "path";
 import { directoryExists } from "./index";
 import { gitignore, ignore } from "./gitignore";
 
+interface Options {
+  onlyDir?:boolean
+  onlyFiles?:boolean
+}
+
 export class ListDirectories {
   private readonly directory: string;
   private ignores: Array<string> = [];
+  private options:Options;
 
-  constructor(directory: string) {
+  constructor(directory: string, options:Options) {
     this.directory = directory;
+    this.options = options;
     this.executeLsCommand(this.directory);
   }
 
@@ -25,7 +32,14 @@ export class ListDirectories {
         console.log(redBright(`ERROR: ${err.msg}`));
         process.exit();
       }
-      content.forEach((filename: string): void => {
+      content.filter((contentItem:string):boolean => {
+        if(this.options.onlyDir){
+          return directoryExists(join(directory, contentItem), true)
+        } else if(this.options.onlyFiles){
+          return directoryExists(join(directory,contentItem), false)
+        }
+        return true
+      }).forEach((filename: string): void => {
         try {
           if (ignore(filename, directory, this.ignores)) {
             const size: number = statSync(filename).size;
