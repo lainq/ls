@@ -36,4 +36,5 @@ const validateDirectory = (results:ArgumentParserResult):ArgumentParserResult =>
 const argumentParser:ArgumentParserResult = new ArgumentParser(argv.slice(2)).createParserResults()
 const valid = validateDirectory(argumentParser)
 
+
 const ls = new ListDirectories(valid.command)

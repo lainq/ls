@@ -1,7 +1,8 @@
 import { redBright } from 'chalk'
+import { cwd } from 'process';
 
 export interface ArgumentParserResult {
-    command:string | null,
+    command:string
     flags:Array<string>
 }
 
@@ -13,7 +14,7 @@ export class ArgumentParser {
     }
 
     public createParserResults():ArgumentParserResult {
-        let command:string | null = null;
+        let command:string = cwd();
         let parameters:Array<string> = new Array<string>()
         for(let index=0; index<this.arguments.length; index++){
             if(index == 0){
