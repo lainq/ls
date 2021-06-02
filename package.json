@@ -1,0 +1,25 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "ls command implemented in different languages :wink:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranavbaburaj/ls.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranavbaburaj/ls/issues"
+  },
+  "homepage": "https://github.com/pranavbaburaj/ls#readme",
+  "dependencies": {
+    "@types/chalk": "^2.2.0",
+    "@types/node": "^15.6.1",
+    "chalk": "^4.1.1"
+  }
+}
