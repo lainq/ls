@@ -1,3 +1,2 @@
-# ls
-
-ls command implemented in different languages :wink:
+# `LS`
+A simple implementation of the ls command, created using typescript
