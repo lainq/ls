@@ -45,8 +45,8 @@ const argumentParser: ArgumentParserResult = new ArgumentParser(
 ).createParserResults();
 const valid = validateDirectory(argumentParser);
 
-const ls = new ListDirectories(valid.command ,{
-  onlyDir : valid.flags.includes('only-dirs'),
-  onlyFiles : valid.flags.includes('only-files'),
-  createDirectoryTree : valid.flags.includes('tree')
+const ls = new ListDirectories(valid.command, {
+  onlyDir: valid.flags.includes("only-dirs"),
+  onlyFiles: valid.flags.includes("only-files"),
+  createDirectoryTree: valid.flags.includes("tree"),
 });
