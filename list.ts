@@ -3,10 +3,12 @@ import { blueBright, Chalk, cyanBright, redBright, yellowBright } from "chalk";
 import { join } from "path";
 import { directoryExists } from "./index";
 import { gitignore, ignore } from "./gitignore";
+import { DirectoryTree } from "./tree";
 
 interface Options {
   onlyDir?:boolean
   onlyFiles?:boolean
+  createDirectoryTree? : boolean
 }
 
 export class ListDirectories {
@@ -20,13 +22,17 @@ export class ListDirectories {
     this.executeLsCommand(this.directory);
   }
 
-  private executeLsCommand(directory: string): void {
+  private executeLsCommand(directory: string): void | null {
     if (!directoryExists(directory, true)) {
       console.log(redBright(`ERROR: ${directory} is not a directory`));
       process.exit();
     }
 
     this.ignores = gitignore(this.directory);
+    if(this.options.createDirectoryTree){
+      const tree = new DirectoryTree(this.directory, this.options.onlyDir)
+      return null
+    }
     readdir(directory, (err: any, content: Array<string>): void => {
       if (err) {
         console.log(redBright(`ERROR: ${err.msg}`));

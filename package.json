@@ -20,6 +20,8 @@
   "dependencies": {
     "@types/chalk": "^2.2.0",
     "@types/node": "^15.6.1",
-    "chalk": "^4.1.1"
+    "chalk": "^4.1.1",
+    "directory-tree": "^2.2.9",
+    "ts-node": "^10.0.0"
   }
 }
